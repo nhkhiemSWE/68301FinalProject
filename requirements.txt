@@ -2,4 +2,3 @@ omegaconf
 einops
 open_clip_torch
 pytorch_lightning
-xformers

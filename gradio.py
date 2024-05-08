@@ -13,9 +13,19 @@ from annotator.util import resize_image, HWC3
 from cldm.model import create_model, load_state_dict
 from cldm.ddim_hacked import DDIMSampler
 
+import sys
 
-model = create_model('./models/cldm_v15.yaml').cpu()
-model.load_state_dict(load_state_dict('./models/control_sd21_ini.ckpt', location='cuda'))
+# Check if the correct number of arguments are provided
+if len(sys.argv) != 2:
+    print("Usage: python gradio.py arg1")
+    sys.exit(1)
+
+# Retrieve the argument
+arg1 = sys.argv[1]
+
+
+model = create_model('./models/cldm_v21.yaml').cpu()
+model.load_state_dict(load_state_dict('./models/' + arg1, location='cuda'))
 model = model.cuda()
 ddim_sampler = DDIMSampler(model)
 

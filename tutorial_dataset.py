@@ -8,8 +8,9 @@ class MyDataset(Dataset):
     def __init__(self):
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
         self.data = []
-        with open(self.script_dir + '/training/fill50k/prompt.json', 'rt') as f:
+        with open(self.script_dir + '/training/data/Khiem/prompt.json', 'rt') as f:
             for line in f:
+                print(line)
                 self.data.append(json.loads(line))
 
     def __len__(self):
@@ -22,8 +23,8 @@ class MyDataset(Dataset):
         target_filename = item['target']
         prompt = item['prompt']
 
-        source = cv2.imread(self.script_dir + '/training/fill50k/' + source_filename)
-        target = cv2.imread(self.script_dir +'/training/fill50k/' + target_filename)
+        source = cv2.imread(self.script_dir + '/training/data/Khiem/' + source_filename)
+        target = cv2.imread(self.script_dir +'/training/data/Khiem/' + target_filename)
 
         # Do not forget that OpenCV read images in BGR order.
         source = cv2.cvtColor(source, cv2.COLOR_BGR2RGB)
